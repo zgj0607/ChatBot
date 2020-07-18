@@ -1,0 +1,2 @@
+{{ object.in_response_to }}
+{{ object.text }}

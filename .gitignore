@@ -1,0 +1,24 @@
+# Created by .ignore support plugin (hsz.mobi)
+whoosh_index
+media/upload
+log/*
+.DS_Store
+.idea/.gitignore
+.idea/chatbot.iml
+.idea/dataSources.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.ipynb_checkpoints/
+__pycache__/
+chatbot/.DS_Store
+chatbot/__pycache__/
+chatbot/component/__pycache__/
+chatbot/logic/__pycache__/
+chatbot/logs/
+chatbot/migrations/
+chatbot/search/__pycache__/
+chatbot/settings.py
+chatbot/static/.DS_Store
+chatbot/templates/.DS_Store

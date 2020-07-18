@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method='get' action="/search" target="_self">
+    <input type="text" name="q">
+    <input type="submit" value="查询">
+</form>
+{% if query %}
+    <h3>搜索结果如下：</h3>
+    {% for result in page.object_list %}
+        {% if result.object.title %}
+            <a href="/admin/chatbot/knowledge/?q={{ result.object.title }}" rel="external nofollow"
+               target="_blank">{{ result.object.title }}</a><br/>
+        {% endif %}
+
+        {% if result.object.queston %}
+            <a href="/admin/chatbot/similarquestion/?q={{ result.object.question }}" rel="external nofollow"
+               target="_blank">{{ result.object.queston }}</a><br/>
+        {% endif %}
+
+        {% if result.object.name %}
+            <a href="/admin/chatbot/knowledge/?q={{ result.object.name }}" rel="external nofollow"
+               target="_blank">{{ result.object.name }}</a><br/>
+        {% endif %}
+
+        {% if result.object.value %}
+            <a href="/admin/chatbot/similarquestion/?q={{ result.object.value }}" rel="external nofollow"
+               target="_blank">{{ result.object.value }}</a><br/>
+        {% endif %}
+
+    {% empty %}
+        <p>啥也没找到</p>
+    {% endfor %}
+
+    {% if page.has_previous or page.has_next %}
+        <div>
+            {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}"
+                                         rel="external nofollow">{% endif %}&laquo; 上一页{% if page.has_previous %}
+            </a>{% endif %}
+            |
+            {% if page.has_next %}
+                <a href="?q={{ query }}&amp;page={{ page.next_page_number }}" rel="external nofollow">{% endif %}下一页
+            &raquo;{% if page.has_next %}</a>{% endif %}
+        </div>
+    {% endif %}
+{% endif %}
+</body>
+</html>
