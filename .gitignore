@@ -19,6 +19,5 @@ chatbot/logic/__pycache__/
 chatbot/logs/
 chatbot/migrations/
 chatbot/search/__pycache__/
-chatbot/settings.py
 chatbot/static/.DS_Store
 chatbot/templates/.DS_Store
