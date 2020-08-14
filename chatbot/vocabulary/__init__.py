@@ -1,5 +1,5 @@
-from chatbot.vocabulary.vocabulary import Vocabulary
+from chatbot.vocabulary.word import Word
 
 __all__ = [
-    'Vocabulary',
+    'Word',
 ]

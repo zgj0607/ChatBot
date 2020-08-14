@@ -1,4 +1,4 @@
-class ExcelUtil(object):
+class ExcelReadUtil(object):
     def __init__(self, excel_file, file_type):
         self.file_type = file_type
         self.header = []
@@ -69,3 +69,49 @@ class ExcelUtil(object):
 
         if self.file_type == 'xlsx':
             return self.sheet.cell(row, col).data_type
+
+
+class ExcelWriteUtil(object):
+    def __init__(self, filename, file_type='xlsx'):
+        self.file_type = file_type
+        self.filename = filename
+
+        if file_type == 'xlsx':
+            from openpyxl import Workbook
+            self.excel_file = Workbook()
+            self.work_sheet = self.excel_file.active
+            self.work_sheet.title = 'sheet1'
+            self.header = []
+
+    def get_work_sheet(self):
+        return self.work_sheet
+
+    def get_work_book(self):
+        return self.excel_file
+
+    def save(self):
+        self.excel_file.save(filename=self.filename)
+
+    def set_header(self, headers):
+        for idx, h in enumerate(headers):
+            self.work_sheet.cell(row=1, column=idx + 1, value=h)
+            self.header.append(h)
+
+    def merge_header(self, headers):
+        header_len = len(self.header)
+        for h in headers:
+            if h in self.header:
+                continue
+            header_len += 1
+            self.work_sheet.cell(row=1, column=header_len, value=h)
+            self.header.append(h)
+
+    def append_row(self, row: dict):
+        self.merge_header(row.keys())
+        append_row = self.work_sheet.max_row + 1
+        for idx, h in enumerate(self.header):
+            self.work_sheet.cell(row=append_row, column=idx + 1, value=row.get(h, ''))
+
+    def bulk_append_by_list_dict(self, rows: [{}]):
+        for row in rows:
+            self.append_row(row)

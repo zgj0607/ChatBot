@@ -25,7 +25,7 @@ from haystack.utils import get_identifier, get_model_ct
 from haystack.utils.app_loading import haystack_get_model
 from jieba.analyse import ChineseAnalyzer
 
-from chatbot.vocabulary import Vocabulary
+from chatbot.vocabulary import Word
 
 try:
     import whoosh
@@ -87,7 +87,7 @@ class WhooshSearchBackend(BaseSearchBackend):
         self.post_limit = getattr(connection_options, 'POST_LIMIT', 128 * 1024 * 1024)
         self.path = connection_options.get('PATH')
 
-        self.vocabulary = Vocabulary()
+        self.vocabulary = Word()
         self.vocabulary.loading_user_dict()
 
         if connection_options.get('STORAGE', 'file') != 'file':

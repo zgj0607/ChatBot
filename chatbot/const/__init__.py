@@ -1,5 +1,3 @@
-from chatbot.const.const import SLOT_TYPE
+from chatbot.const.const import Const
 
-__all__ = [
-    'SLOT_TYPE',
-]
+const = Const()
